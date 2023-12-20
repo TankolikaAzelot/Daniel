@@ -1,0 +1,64 @@
+import tkinter as tk
+
+class Forma1(tk.Tk):
+    def __init__(self):
+        super().__init__()
+
+        self.title("Forma 1")
+        tk.Label(self, text="Ievadiet informāciju:").pack(pady=10)
+
+        self.ievades_lauks = tk.Entry(self)
+        self.ievades_lauks.pack(pady=10)
+
+        tk.Button(self, text="Pāriet uz Formu 2", command=self.iet_uz_formu_2).pack()
+
+    def iet_uz_formu_2(self):
+        ievade = self.ievades_lauks.get()
+        print(f"Forma 1: {ievade}")
+
+        forma2 = Forma2(self)
+        self.withdraw()
+        forma2.deiconify()
+
+class Forma2(tk.Toplevel):
+    def __init__(self, vecforma):
+        super().__init__(vecforma)
+
+        self.title("Forma 2")
+        tk.Label(self, text="Papildus informācija:").pack(pady=10)
+
+        self.ievades_lauks = tk.Entry(self)
+        self.ievades_lauks.pack(pady=10)
+
+        tk.Button(self, text="Pāriet uz Formu 3", command=self.iet_uz_formu_3).pack()
+
+    def iet_uz_formu_3(self):
+        ievade = self.ievades_lauks.get()
+        print(f"Forma 2: {ievade}")
+
+        forma3 = Forma3(self)
+        self.withdraw()
+        forma3.deiconify()
+
+class Forma3(tk.Toplevel):
+    def __init__(self, vecforma):
+        super().__init__(vecforma)
+
+        self.title("Forma 3")
+        tk.Label(self, text="Vēl papildus informācija:").pack(pady=10)
+
+        self.ievades_lauks = tk.Entry(self)
+        self.ievades_lauks.pack(pady=10)
+
+        tk.Button(self, text="Pāriet uz Formu 1", command=self.iet_uz_formu_1).pack()
+
+    def iet_uz_formu_1(self):
+        ievade = self.ievades_lauks.get()
+        print(f"Forma 3: {ievade}")
+
+        vecforma.deiconify()
+        self.withdraw()
+
+if __name__ == "__main__":
+    forma1 = Forma1()
+    forma1.mainloop()
